@@ -10,7 +10,7 @@ export default class SupportChatEvents {
         const gemini = new GeminiService();
         this.socket.emit("writing", true);
         const response = await gemini.ask(
-          `Saluda a la persona que está en el soporte y dile que sos el robot de ayuda del monitor de turnos y que estás acá para ayudarte`
+          `Saluda a la persona que está en el soporte y dile que sos el robot de ayuda del monitor de turnos y que estás acá para ayudarle`
         );
 
         this.socket.emit("support-response", {
