@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <div class="flex">
+      <div class="container mx-auto h-96">
+        <div class="flex justify-between w-full border-2 px-4">
+          <h1 class="text-4xl my-4 w-full"><%= title %></h1>
+          <% if (!query.readOnly) { %>
+          <a
+            href="/register-turn"
+            class="p-2 rounded-lg text-white text-center w-72 my-auto bg-indigo-500"
+          >
+            Registrar turno
+          </a>
+          <a
+            href="/tickets-history"
+            class="p-2 rounded-lg mx-2 text-white text-center w-72 my-auto bg-indigo-500"
+          >
+            Historial
+          </a>
+          <a
+            href="?readOnly=true"
+            target="_blank"
+            class="p-2 rounded-lg mx-2 text-white text-center w-72 my-auto bg-indigo-500"
+          >
+            Solo lectura
+          </a>
+          <% } %>
+        </div>
+        <div class="flex h-96 container shadow-sm rounded-lg">
+          <div class="border w-full flex flex-col justify-between">
+            <div
+              id="currentTicket"
+              class="flex text-4xl text-center my-auto mx-auto h-full py-32"
+            ></div>
+
+            <div class="container border-t">
+              <h4 id="sector" class="text-xl font-bold text-center p-4"></h4>
+            </div>
+          </div>
+          <div id="qeue" class="container border w-60"></div>
+        </div>
+        <% if (!query.readOnly) { %>
+        <div class="flex my-20 text-white my-10">
+          <button
+            onclick="next()"
+            class="p-2 rounded-lg bg-indigo-500 w-full mx-4"
+          >
+            Pasar en orden
+          </button>
+          <button
+            onclick="next('A')"
+            class="p-2 rounded-lg bg-indigo-500 w-full mx-4"
+          >
+            Llamar Laboratorio
+          </button>
+          <button
+            onclick="next('B')"
+            class="p-2 rounded-lg bg-indigo-500 w-full mx-4"
+          >
+            Llamar Clínica
+          </button>
+          <button
+            onclick="next('C')"
+            class="p-2 rounded-lg bg-indigo-500 w-full mx-4"
+          >
+            Llamar Internación
+          </button>
+        </div>
+        <% } %>
+      </div>
+      <% if (!query.readOnly) { %>
+
+      <button
+        id="chat-bubble"
+        onclick="openChat();"
+        class="rounded-full border bg-white p-4 shadow-xl container absolute right-10 bottom-10 bg-white w-fit h-fit shadow-xl rounded-xl"
+      >
+        💬
+      </button>
+      <% } %> <% if (!query.readOnly) { %>
+      <div
+        id="chat"
+        class="container flex flex-col absolute right-10 bottom-10 shadow-xl rounded-xl w-96 h-96 justfiy-between"
+      >
+        <div
+          class="flex justify-between  rounded-t-xl bg-indigo-500 text-white border-b"
+        >
+          <h1 class="text-2xl my-2 mx-4">Chat de soporte</h1>
+          <button class="mx-4" onclick="closeChat();">❌</button>
+        </div>
+        <section id="chat-messages" class="h-full overflow-auto">
+          <div class="relative flex flex-col">
+            <ul class="flex flex-col">
+              <li
+                class="list-none flex flex-col shadow-xl my-2 rounded-lg mr-1 w-72 p-2"
+              >
+                Cargando chat...
+              </li>
+            </ul>
+          </div>
+        </section>
+        <div class="relative flex p-4 border-t">
+          <input
+            id="ask-input"
+            type="text"
+            placeholder="Escribe su consulta"
+            class="my-auto w-full p-2 border rounded-lg"
+          />
+          <button
+            type="button"
+            onclick="askToSupport();"
+            class="bg-indigo-100 p-2 rounded mx-4"
+          >
+            Preguntar
+          </button>
+        </div>
+      </div>
+      <% } %>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script src="http://localhost:3000/resources/scripts/main"></script>
+    <script src="http://localhost:3000/resources/scripts/tickets"></script>
+    <script src="http://localhost:3000/resources/scripts/ticket-events-socket"></script>
+    <script src="http://localhost:3000/resources/scripts/chat-events-socket"></script>
+    <script src="http://localhost:3000/resources/scripts/chat-messages"></script>
+  </body>
+</html>

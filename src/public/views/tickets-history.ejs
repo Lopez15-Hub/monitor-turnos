@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title><%= title %></title>
+  </head>
+  <body>
+    <div class="container border mx-auto">
+      <div class="flex justify-between px-4">
+        <h1 class="text-4xl my-4 w-full p-2"><%= title %></h1>
+        <a
+          href="/"
+          class="p-2 rounded-lg text-white text-center w-72 my-auto bg-indigo-500"
+        >
+          Volver
+        </a>
+      </div>
+      <div id="historyContainer" class="border"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="http://localhost:3000/resources/scripts/tickets-history"></script>
+  </body>
+</html>
