@@ -6,7 +6,7 @@ export default class SupportChatEvents {
   }
   init() {
     this.socket.on("connection", (socket) => {
-      socket.on("request-welcome", async (message) => {
+      socket.on("request-welcome", async (_) => {
         const gemini = new GeminiService();
         this.socket.emit("writing", true);
         const response = await gemini.ask(
