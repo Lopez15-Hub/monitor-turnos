@@ -8,7 +8,7 @@
 
    `Un websocket es un canal de comunicación bidireccional sobre un único socket TCP diseñado para aplicaciones clientes/servidor`
 
-## ¿Cómo correr está aplicación?
+## ¿Cómo correr esta aplicación?
 
 1. Clone el repositorio
 
